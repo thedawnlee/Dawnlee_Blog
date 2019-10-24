@@ -19,6 +19,7 @@
     </properties>
 
     <dependencies>
+<<<<<<< HEAD
 
         <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
         <dependency>
@@ -27,6 +28,8 @@
             <version>1.4.200</version>
         </dependency>
 
+=======
+>>>>>>> 3fb70514526b02d4ab01e17a3dcbfa439127fa96
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -42,6 +45,7 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+<<<<<<< HEAD
         <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
@@ -55,6 +59,8 @@
             <version>1.2.62</version>
         </dependency>
 
+=======
+>>>>>>> 3fb70514526b02d4ab01e17a3dcbfa439127fa96
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
