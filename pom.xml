@@ -115,6 +115,16 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>5.0.5</version>
+                <configuration>
+                    <url>jdbc:mysql://39.96.183.205:10086/Bolg</url>
+                    <user>root</user>
+                    <password>123456</password>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
