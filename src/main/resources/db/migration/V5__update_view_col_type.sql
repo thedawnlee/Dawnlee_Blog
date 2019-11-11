@@ -1,0 +1,2 @@
+ALTER TABLE `question`
+MODIFY COLUMN `view_count` int(255) NULL DEFAULT NULL AFTER `tag`;

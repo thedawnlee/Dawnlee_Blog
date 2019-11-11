@@ -70,7 +70,7 @@ public class AuthorizeController {
             logger.info(user1.toString()+"插入成功");
             //登陆成功，写cookie和session
             response.addCookie(new Cookie("token",token));
-//            request.getSession().setAttribute("user",getuser);
+            request.getSession().setAttribute("user",getuser);
             return "redirect:/";
 
         }else{
