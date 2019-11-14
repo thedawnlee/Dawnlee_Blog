@@ -57,6 +57,8 @@ public class AuthorizeController {
         accessTokenDto.setClient_secret(client_secret);
         String accessToken = githubUtils.getAccessToken(accessTokenDto);
         githubUser getuser = githubUtils.getuser(accessToken);
+        logger.info(getuser.getAvatarurl());
+
 
         if(getuser!=null){
             User user = new User();
@@ -64,8 +66,11 @@ public class AuthorizeController {
             user.setToken(token);
             user.setName(getuser.getName());
             user.setAccountid(String.valueOf(getuser.getId()));
-            user.setGmt_create(System.currentTimeMillis());
-            user.setGmt_modify(user.getGmt_create());
+            user.setGmtcreate(System.currentTimeMillis());
+            user.setGmtmodify(System.currentTimeMillis());
+            user.setAvatarUrl(getuser.getAvatarurl());
+            logger.info(user.toString());
+
             User user1 = userService.insert(user);
             logger.info(user1.toString()+"插入成功");
             //登陆成功，写cookie和session

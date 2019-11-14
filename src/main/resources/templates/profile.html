@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>我的</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/css/community.css">
+    <script src="/js/jquery-3.4.1.min.js" type="application/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+
+</head>
+<body>
+<div th:insert="~{navigation :: nav}"></div>
+<div class="container-fluid main" >
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" >
+
+            <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                <span th:text="${sectionName}"></span>
+            </h2>
+            <hr>
+
+
+
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" >
+
+            <div class="list-group">
+                <a href="/profile/question"  th:class="${section}=='question'?'active list-group-item':'list-group-item'">我的提问<span class="badge">1</span></a>
+                <a href="#" th:class="${section}=='replies'?'active list-group-item':'list-group-item'">我的回复<span class="badge">14</span></a>
+                <a href="#" th:class="${section}=='notice'?'active list-group-item':'list-group-item'">系统通知<span class="badge">12</span></a>
+                <a href="#" th:class="${section}=='gabage'?'active list-group-item':'list-group-item'">草稿箱
+                    <span class="badge">5</span>
+                </a>
+            </div>
+
+        </div>
+        <div class="container-fluid main ">
+            <div class="row">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                    <div class="alert alert-danger col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                         th:text="${error}"
+                         th:if="${error != null}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

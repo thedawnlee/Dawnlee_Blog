@@ -170,3 +170,22 @@ body {
 .red {
     color: red !important;
 }
+.img-size{
+
+    width: 38px;
+    height: 38px;
+}
+
+.question-desc{
+    font-size: 13px;
+    font-weight: normal;
+    color: #999;
+}
+
+.comment-question{
+
+    float: right;
+    margin-bottom: 15px;
+
+
+}

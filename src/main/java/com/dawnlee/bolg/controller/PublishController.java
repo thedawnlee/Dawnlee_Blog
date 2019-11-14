@@ -104,6 +104,7 @@ public class PublishController {
         question.setDescription(description);
         question.setTag(tag);
         question.setGmtcreate(System.currentTimeMillis());
+        question.setGmtmodify(System.currentTimeMillis());
         question.setCreator(user.getId());
         publishService.createQuestion(question);
 

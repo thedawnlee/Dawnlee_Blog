@@ -1,4 +1,7 @@
 package com.dawnlee.bolg.model;
+
+import lombok.Data;
+
 /*
 CREATE TABLE `Bolg`.`无标题`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -14,6 +17,7 @@ CREATE TABLE `Bolg`.`无标题`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
  */
+@Data
 public class Question {
 
     private Integer id;
@@ -27,83 +31,6 @@ public class Question {
     private Long likecount;
     private Long viewcount;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Long getGmtcreate() {
-        return gmtcreate;
-    }
-
-    public void setGmtcreate(Long gmtcreate) {
-        this.gmtcreate = gmtcreate;
-    }
-
-    public Long getGmtmodify() {
-        return gmtmodify;
-    }
-
-    public void setGmtmodify(Long gmtmodify) {
-        this.gmtmodify = gmtmodify;
-    }
-
-    public Integer getCreator() {
-        return creator;
-    }
-
-    public void setCreator(Integer creator) {
-        this.creator = creator;
-    }
-
-    public Long getCommentcount() {
-        return commentcount;
-    }
-
-    public void setCommentcount(Long commentcount) {
-        this.commentcount = commentcount;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
-
-    public Long getLikecount() {
-        return likecount;
-    }
-
-    public void setLikecount(Long likecount) {
-        this.likecount = likecount;
-    }
-
-    public Long getView_count() {
-        return viewcount;
-    }
-
-    public void setView_count(Long view_count) {
-        this.viewcount = view_count;
-    }
 }

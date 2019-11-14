@@ -3,7 +3,11 @@ package com.dawnlee.bolg.mapper;
 import com.dawnlee.bolg.model.Question;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /*
 CREATE TABLE `Bolg`.`无标题`  (
@@ -27,4 +31,10 @@ public interface QuestionMapper {
 
     @Insert("insert into question(title,description,gmt_create,gmt_modify,creator,comment_count,like_count,tag,view_count) values(#{title},#{description},#{gmtcreate},#{gmtmodify},#{creator},#{commentcount},#{likecount},#{tag},#{viewcount})")
     public void create(Question question);
+
+    @Select("select * from question limit #{offset},#{size}")
+    public List<Question> listallQuestion(@Param(value = "offset") Integer offset,@Param(value = "size") Integer size);
+
+    @Select("select count(1) from question")
+    public Integer selectCount();
 }
