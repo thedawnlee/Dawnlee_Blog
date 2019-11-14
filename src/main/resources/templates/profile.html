@@ -18,20 +18,61 @@
 
             <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                 <span th:text="${sectionName}"></span>
+
             </h2>
             <hr>
 
+            <div class="media" th:each="question:${listallQuestion.data}">
+                <div class="media-left">
+                    <a href="#">
+                        <!--<img class="media-object img-size" th:src="${question.user.getAvatarUrl()}">-->
+                        <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3615831237,1510664097&fm=26&gp=0.jpg" class="media-object img-size">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading" >
+                        <a th:text="${question.getTitle()}" th:href="@{/}"></a>
+                    </h4>
+                    <span th:text="${question.getDescription()}" class="question-desc"></span><br>
+                    <!--  <span class="text-desc"><span th:text="${question.commentCount}"></span> 个回复 • <span
+                                                th:text="${question.viewCount}"></span> 次浏览 • <span
+                                                th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}"></span></span>-->
+                    <span class="question-desc"><a th:text="${question.user.getName()}" th:href="@{/}"></a> 发起了问题 · <span th:text="${question.getViewcount()!=null}?${question.getViewcount()}:0"></span>次浏览·<span th:text="${question.getCommentcount()}"></span> 个回复 · <span th:text="${question.getLikecount()!=null}?${question.getLikecount()}:0"></span> 个关注 · 发布时间<a class="comment-question" th:text="回复" th:href="@{#}"></a><span th:text="${#dates.format(question.getGmtcreate(),'yyyy-MM-dd HH:mm')}+'· 最近回复'"></span><span th:text="${#dates.format(question.getGmtmodify(),'yyyy-MM-dd HH:mm')}"></span></span>
+                </div>
+            </div>
 
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li th:if="${listallQuestion.isShowPrevious()}">
+                        <a href="#" th:href="@{/profile/question(page=1,creator_id=${session.user.getId()})}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;&laquo;</span>
+                        </a>
+                    </li>
+                    <li th:if="${listallQuestion.isShowFirstPage()}">
+                        <a href="#" th:href="@{/profile/question(page=${listallQuestion.getPage()-1},,creator_id=${session.user.getId()})}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    <li th:each="page : ${listallQuestion.getPages()}" th:class="${listallQuestion.getPage()==page}?'active':''"><a href="#" th:href="@{/profile/question(page=${page},creator_id=${session.user.getId()})}" th:text="${page}">1</a></li>
+
+                    <li>
+                        <a href="#" th:href="@{/profile/question(page=${listallQuestion.getTotalPage()},creator_id=${session.user.getId()})}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" >
 
             <div class="list-group">
-                <a href="/profile/question"  th:class="${section}=='question'?'active list-group-item':'list-group-item'">我的提问<span class="badge">1</span></a>
+                <a href="#"  th:href="@{/profile/question(creator_id=${session.user.getId()})}" th:class="${section}=='question'?'active list-group-item':'list-group-item'">我的提问<span class="badge">1</span></a>
                 <a href="#" th:class="${section}=='replies'?'active list-group-item':'list-group-item'">我的回复<span class="badge">14</span></a>
                 <a href="#" th:class="${section}=='notice'?'active list-group-item':'list-group-item'">系统通知<span class="badge">12</span></a>
                 <a href="#" th:class="${section}=='gabage'?'active list-group-item':'list-group-item'">草稿箱
-                    <span class="badge">5</span>
+                    <span class="badge">14</span>
                 </a>
             </div>
 

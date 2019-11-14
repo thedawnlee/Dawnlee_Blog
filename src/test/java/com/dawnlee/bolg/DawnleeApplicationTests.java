@@ -1,12 +1,16 @@
 package com.dawnlee.bolg;
 
+import com.dawnlee.bolg.dto.PaginationDto;
 import com.dawnlee.bolg.dto.QuestionAndUserDto;
+import com.dawnlee.bolg.mapper.QuestionMapper;
+import com.dawnlee.bolg.model.Question;
 import com.dawnlee.bolg.service.QuestionService;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import sun.security.util.Length;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,6 +25,9 @@ class DawnleeApplicationTests {
     Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     QuestionService questionService;
+
+    @Autowired
+    QuestionMapper questionMapper;
 
     @Test
     void contextLoads() {
@@ -46,8 +53,26 @@ class DawnleeApplicationTests {
     void testdto(){
 
 
+//        List<Question> byCreator = questionMapper.findByCreator(8);
+
+
+  //      System.out.println(byCreator);
 
 
     }
 
+    @Test
+    void testcreator_question(){
+
+        PaginationDto<QuestionAndUserDto> questionAndUserDtoPaginationDto = questionService.listByCreator(2, 5, 8);
+
+
+        PaginationDto<QuestionAndUserDto> listall = questionService.listByCreator(1,5,8);
+
+//        System.out.println(listall.getData());
+
+        System.out.println(questionAndUserDtoPaginationDto.getData());
+
+
+    }
 }

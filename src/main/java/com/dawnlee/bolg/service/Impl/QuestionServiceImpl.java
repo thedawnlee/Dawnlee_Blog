@@ -35,6 +35,7 @@ public class QuestionServiceImpl implements QuestionService {
 
         Integer totalcount = questionMapper.selectCount();
 
+
         questionAndUserDtoPaginationDto.setPagination(totalcount,page,size);
 
         if (page<1){
@@ -99,5 +100,79 @@ Integer integer=0;
 
 
         return questionAndUserDtoPaginationDto;
+    }
+
+    @Override
+    public PaginationDto<QuestionAndUserDto> listByCreator(Integer page, Integer size, Integer creator_id) {
+        PaginationDto<QuestionAndUserDto> questionAndUserDtoPaginationDto = new PaginationDto<>();
+
+        Integer offset  = size*(page-1);
+
+        Integer totalcount = questionMapper.selectCreatorCount(creator_id);
+
+
+        logger.info("来自service层的totalcount"+totalcount.toString());
+
+        questionAndUserDtoPaginationDto.setPagination(totalcount,page,size);
+
+        if (page<1){
+            page=1;
+        }
+
+        Integer integer=0;
+        if (totalcount%size==0){
+            integer = totalcount/size;
+        }
+
+        if (totalcount%size!=0){
+            integer=totalcount/size+1;
+        }
+
+
+        if (page>integer){
+            page=integer;
+        }
+
+
+
+        logger.info("来自service层的totalpage"+integer.toString());
+
+
+
+
+
+
+        List<QuestionAndUserDto> questionAndUserDtoList = new ArrayList<>();
+
+        List<Question> questions = questionMapper.findByCreator(creator_id,offset,size);
+        for (Question question : questions) {
+
+
+            QuestionAndUserDto questionAndUserDto = new QuestionAndUserDto();
+
+            User creator = userMapper.findById(question.getCreator());
+
+            BeanUtils.copyProperties(question,questionAndUserDto);
+            questionAndUserDto.setUser(creator);
+            questionAndUserDtoList.add(questionAndUserDto);
+
+
+        }
+        questionAndUserDtoPaginationDto.setData(questionAndUserDtoList);
+
+logger.info("1");
+        questionAndUserDtoPaginationDto.setTotalPage(integer);
+        return questionAndUserDtoPaginationDto;
+
+    }
+
+    @Override
+    public QuestionAndUserDto findbyIdforQuestion(Integer id) {
+        Question question = questionMapper.findById(id);
+        QuestionAndUserDto questionAndUserDto = new QuestionAndUserDto();
+        BeanUtils.copyProperties(question,questionAndUserDto);
+        User user = userMapper.findById(question.getCreator());
+        questionAndUserDto.setUser(user);
+        return questionAndUserDto;
     }
 }

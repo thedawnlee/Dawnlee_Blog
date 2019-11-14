@@ -7,7 +7,7 @@
 <body>
 
 <div th:fragment="navigation">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default dawn">
         <div class="container-fluid">
 
             <div class="navbar-header">
@@ -15,7 +15,7 @@
                     <span class="sr-only">未来社区</span>
 
                 </button>
-                <a class="navbar-brand" href="#">未来社区</a>
+                <a class="navbar-brand" href="#" th:href="@{/}">未来社区</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -37,7 +37,7 @@
                     <li class="dropdown" th:if="${session.user!=null}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">[[${session.user.getName()}]] <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/profile/question">我的问题</a></li>
+                            <li><a href="/profile/question" th:href="@{/profile/question(creator_id=${session.user.getId()})}">我的问题</a></li>
 
                             <li><a href="/logout">退出登录</a></li>
                         </ul>

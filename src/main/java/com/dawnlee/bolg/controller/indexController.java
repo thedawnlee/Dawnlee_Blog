@@ -41,22 +41,22 @@ public class indexController {
         logger.info(listall.toString());
 
         model.addAttribute("listallQuestion",listall);
-        Cookie[] cookies = request.getCookies();
-
-        if (cookies==null){return "index";}
-        for (Cookie cookie : cookies) {
-
-            if ("token".equals(cookie.getName())) {
-                String token = cookie.getValue();
-                User user = userService.findByToken(token);
-                logger.info("进入判断");
-                if (user != null) {
-                    request.getSession().setAttribute("user", user);
-                }
-                break;
-            }
-
-        }
+//        Cookie[] cookies = request.getCookies();
+//
+//        if (cookies==null){return "index";}
+//        for (Cookie cookie : cookies) {
+//
+//            if ("token".equals(cookie.getName())) {
+//                String token = cookie.getValue();
+//                User user = userService.findByToken(token);
+//                logger.info("进入判断");
+//                if (user != null) {
+//                    request.getSession().setAttribute("user", user);
+//                }
+//                break;
+//            }
+//
+//        }
 
         return "index";
         }

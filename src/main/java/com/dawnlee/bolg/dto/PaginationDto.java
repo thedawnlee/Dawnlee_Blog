@@ -34,6 +34,7 @@ public class PaginationDto<T> {
 
 
         this.totalPage = totalPage;
+        logger.info(totalPage.toString()+"sp");
 
         if (page<1){
             page=1;

@@ -1,5 +1,6 @@
 package com.dawnlee.bolg.mapper;
 
+import com.dawnlee.bolg.dto.QuestionAndUserDto;
 import com.dawnlee.bolg.model.Question;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -37,4 +38,13 @@ public interface QuestionMapper {
 
     @Select("select count(1) from question")
     public Integer selectCount();
+
+    @Select("select * from question where creator=#{creator_id} limit #{offset},#{size}")
+    public List<Question> findByCreator(Integer creator_id,Integer offset,Integer size);
+
+    @Select("select count(1) from question where creator=#{creator_id} ")
+    public Integer selectCreatorCount(Integer creator_id);
+
+    @Select("select * from question where id=#{id}")
+    public Question findById(Integer id);
 }
