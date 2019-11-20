@@ -8,4 +8,7 @@ public interface UserService {
     public User insert(User user);
 
     User findByToken(String token);
+
+    void updateOrInsert(User user);
+
 }

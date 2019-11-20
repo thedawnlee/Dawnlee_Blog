@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>我的</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/static/css/community.css">
+    <script src="/static/js/jquery-3.4.1.min.js" type="application/javascript"></script>
+    <script src="/static/js/bootstrap.min.js" type="application/javascript"></script>
+
+    <script>
+        $(document).ready(function(){
+                var quesiontitle_1 = $("lsss").val();
+                var quesiontitle_2 = $("lsss").html()
+                var quesiontitle_3 = $("title").text();
+
+        })
+
+
+        function f(){
+            var a = $("#lsss").text();
+            var qid = $(" input[ id = 'qid']").val();
+            var KeyWord = $(" input[ id='exampleInputEmail1' ] ").val();
+            $(window).attr('location', '/sendmail?Tomail=' + KeyWord+'&questionid='+qid);
+
+
+            console.log("" +
+                "                     //         \\\\         //          \\\\       //    ##DDDDDDDDDDDDDDDDDDDDDD##    ## DDDDDDDDDDDDDDDDDDDD ##   ________   ___   ___        ___   ________   ___   ___        ___    ## hh                hh ##   |\\   __  \\ |\\  \\ |\\  \\      |\\  \\ |\\   __  \\ |\\  \\ |\\  \\      |\\  \\    ## hh    //    \\\\    hh ##   \\ \\  \\|\\ /_\\ \\  \\\\ \\  \\     \\ \\  \\\\ \\  \\|\\ /_\\ \\  \\\\ \\  \\     \\ \\  \\    ## hh   //      \\\\   hh ##    \\ \\   __  \\\\ \\  \\\\ \\  \\     \\ \\  \\\\ \\   __  \\\\ \\  \\\\ \\  \\     \\ \\  \\    ## hh                hh ##     \\ \\  \\|\\  \\\\ \\  \\\\ \\  \\____ \\ \\  \\\\ \\  \\|\\  \\\\ \\  \\\\ \\  \\____ \\ \\  \\    ## hh      wwww      hh ##      \\ \\_______\\\\ \\__\\\\ \\_______\\\\ \\__\\\\ \\_______\\\\ \\__\\\\ \\_______\\\\ \\__\\    ## hh                hh ##       \\|_______| \\|__| \\|_______| \\|__| \\|_______| \\|__| \\|_______| \\|__|    ## MMMMMMMMMMMMMMMMMMMM ##    ##MMMMMMMMMMMMMMMMMMMMMM##                             Release 2.6.1. Powered by jinkela-core 2.5.3.         \\/            \\/")
+        }
+
+
+    </script>
+</head>
+<body>
+<div th:insert="~{navigation :: nav}"></div>
+<div class="container-fluid main" >
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" >
+
+            <h4><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                <span id="lsss" th:text="${question.getTitle()}"></span><br>
+
+                <input type="hidden" id="qid" th:value="${question.getId()}">
+            </h4>
+            <span class="text-desc">
+                作者：<span ><a th:text="${question.user.name}" href="" th:href="@{/}"></a></span> |
+                发布时间：
+                <span th:text="${#dates.format(question.getGmtcreate(),'yyyy-MM-dd HH:mm')}"></span> |
+                阅读数： <span th:text="${question.getViewcount()}"></span>
+
+            <button th:if="${session.user!=null}" type="button" class="btn btn-success button-float" th:text="关注+':'+${question.getLikecount()}"></button>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question-view">
+                <span class="span-fixsize" id="questiondesc" th:text="${question.description}"></span>
+            </div>
+            <!--<script type="text/javascript">-->
+                <!--$(function () {-->
+                    <!--editormd.markdownToHTML("question-view", {});-->
+                <!--});-->
+            <!--</script>-->
+
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" >
+            <h3><span>发起人</span></h3>
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <!--<img class="media-object" src="" th:src="${question.getUser().getAvatarUrl()}" >-->
+                        <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3615831237,1510664097&fm=26&gp=0.jpg" class="media-object img-size">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading" th:text="${question.getUser().getName()}"></h4>
+                    一个健康乐观的40岁青少年
+                </div>
+                <hr>
+                <div class="form-group" th:if="${session.user!=null}">
+                    <!--<form action="/question/sendmail" th:action="@{/question/sendmail}">-->
+                    <label for="exampleInputEmail1">邀请回复</label>
+                    <input type="text" class="form-control"  style="width: 264px" name="exampleInputEmail1" id="exampleInputEmail1"  placeholder="邮件邀请回复..">
+                    <br>
+                        <!--<input type="submit" value="发送" class="btn btn-success button-float" style="float: right;margin-right: 50px">-->
+                    <!--&lt;!&ndash;<input type="submit" value="发送">&ndash;&gt;-->
+
+                    <!--</form>-->
+                    <br>
+                    <!--<button  type="submit" th:if="${session.user!=null}" value="Send!" class="btn btn-success button-float"  style="float: right;margin-right: 50px"></button>-->
+                    <!--<a  th:href="@{/question/sendmail}" th:if="${session.user!=null}" type="button" class="btn btn-success button-float"  style="float: right;margin-right: 50px" id="email">发送</a>-->
+                    <button  th:if="${session.user!=null}" type="button" class="btn btn-success button-float email"  style="float: right;margin-right: 50px" id="lisantao" onclick="f()">发送</button>
+                    <script>
+
+
+                        $("lisantao").bind("onclick",function(){
+                            console.log("1");
+                            var KeyWord = $(" input[ id='exampleInputEmail1' ] ").val();
+
+                            //发送请求
+
+                            $(window).attr('location', '/sendmail?email=' + KeyWord);
+                        })
+
+                        // $("lisantao").click(function () {
+                        //
+                        //     var KeyWord = $(" input[ id='exampleInputEmail1' ] ").val();
+                        //
+                        //     //发送请求
+                        //
+                        //     $(window).attr('location', '/sendmail?email=' + KeyWord);
+                        //
+                        //
+                        // })
+
+
+                    </script>
+
+
+                </div>
+            </div>
+        </div>
+        <!--<div class="container-fluid main ">-->
+            <!--<div class="row">-->
+                <!--<div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">-->
+                    <!--<div class="alert alert-danger col-lg-12 col-md-12 col-sm-12 col-xs-12"-->
+                         <!--th:text="${error}"-->
+                         <!--th:if="${error != null}">-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</div>
+</body>
+</html>

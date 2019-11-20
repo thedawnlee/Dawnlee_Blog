@@ -42,7 +42,7 @@ public class AuthorizeController {
     UserService userService;
 
 
-    @GetMapping("callback")
+    @GetMapping("/callback")
     public String callback(@RequestParam(name="code")String code,
                            @RequestParam(name="state")String state,
                            HttpServletRequest request,
@@ -66,13 +66,10 @@ public class AuthorizeController {
             user.setToken(token);
             user.setName(getuser.getName());
             user.setAccountid(String.valueOf(getuser.getId()));
-            user.setGmtcreate(System.currentTimeMillis());
-            user.setGmtmodify(System.currentTimeMillis());
             user.setAvatarUrl(getuser.getAvatarurl());
             logger.info(user.toString());
 
-            User user1 = userService.insert(user);
-            logger.info(user1.toString()+"插入成功");
+            userService.updateOrInsert(user);
             //登陆成功，写cookie和session
             response.addCookie(new Cookie("token",token));
             request.getSession().setAttribute("user",getuser);
@@ -86,6 +83,19 @@ public class AuthorizeController {
         }
         //System.out.println(getuser.getId());
 //        return "redirect:index";
+    }
+
+    @GetMapping("/logout")
+    public String logout(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ){
+
+        request.getSession().removeAttribute("user");
+        Cookie cookie = new Cookie("token",null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return "redirect:/";
     }
 
 }

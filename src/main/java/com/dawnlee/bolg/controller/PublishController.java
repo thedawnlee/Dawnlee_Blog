@@ -33,7 +33,7 @@ public class PublishController {
 
 
 
-    @GetMapping("publish")
+    @GetMapping("/publish")
     public String publish(){
 
 
@@ -41,7 +41,7 @@ public class PublishController {
     }
 
 
-    @PostMapping("publish")
+    @PostMapping("/publish")
     public String dopublish(
             @RequestParam("title")String title,
             @RequestParam("description")String description,

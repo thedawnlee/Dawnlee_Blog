@@ -194,3 +194,23 @@ body {
 
     background: #3b89f0;
 }
+
+.button-float{
+
+    float: right;
+    margin-bottom: 15px;
+    margin-right: 20px;
+    width: 65px;
+
+
+}
+
+.span-fixsize{
+
+    display: inline-block;
+    width: 200px;
+    height: 400px;
+
+
+
+}

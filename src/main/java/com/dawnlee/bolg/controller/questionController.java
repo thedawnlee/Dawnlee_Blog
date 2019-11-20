@@ -35,6 +35,7 @@ public class questionController {
         model.addAttribute("question",questionAndUserDto);
         logger.info(questionAndUserDto.toString());
 
-        return "redirect:/";
+
+        return "question";
     }
 }

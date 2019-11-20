@@ -6,6 +6,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.Arrays;
+
 @Configuration
 //@EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
@@ -16,6 +18,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 //        String[] strings = {"/", "/static/**"};
-        registry.addInterceptor(myinterceptor).addPathPatterns("/**");
+        registry.addInterceptor(myinterceptor).addPathPatterns("/**").excludePathPatterns("/index.html",
+                "/login/*","/question/**","/","/static/**","*.js","*.css","/callback","/profile/**","/sendmail","/publish");
     }
 }
